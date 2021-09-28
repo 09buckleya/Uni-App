@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "ManageUserRoles";
+}
+
+<h2>ManageUserRoles</h2>
+@using (Html.BeginForm("ManageUserRoles", "Admin"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <p>
+        User UserName: @Html.DropDownList("UserName", (IEnumerable<SelectListItem>)ViewBag.Users)
+        Roll : @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.Roles)
+    </p>
+    <input type="submit" value="Save" />
+}
+@Html.ActionLink("Check User Roles", "GetRolesForUser")

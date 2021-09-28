@@ -1,0 +1,64 @@
+﻿@model NAA.Data.Models.Domain.User
+@using NAA.Services.IService;
+@using NAA.Services.Service;
+
+@{
+    ViewBag.Title = "GetUser";
+}
+
+<h2>GetUser</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Add User", "AddUser", User) |
+    @Html.ActionLink("Edit", "UpdateUser", new { userId = Model.UserId, Controller = "User" }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<p>
+    <h2>Current Applications</h2>
+    @if (Model.Applications.Count < 5)
+    {
+        @Html.ActionLink("Create New Application", "GetUniversities", new { userId = Model.UserId, Controller = "University" })
+    }
+</p>
+@if (Model.Applications.Count != 0)
+{
+    @Html.Partial("~/Views/User/GetApplications.cshtml", Model.Applications);
+}
